@@ -1,4 +1,18 @@
 #!/bin/sh
+
+#setup curl, docker
+apt-get install -y curl docker.io
+systemctl enable docker
+systemctl start docker
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64
+chmod +x ./kind
+mv ./kind /usr/local/bin
+
+#setup kubectl
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+
 set -o errexit
 
 # create registry container unless it already exists
