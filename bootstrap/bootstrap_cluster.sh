@@ -60,4 +60,11 @@ data:
     help: "https://kind.sigs.k8s.io/docs/user/local-registry/"
 EOF
 
+docker build -t apachev1 ./web_server/v1/
+docker tag apachev1 localhost:5000/apachev1
+docker push localhost:5000/apachev1
 
+
+docker build -t apachev1 ./web_server/v2/
+docker tag apachev1 localhost:5000/apachev2
+docker push localhost:5000/apachev2
